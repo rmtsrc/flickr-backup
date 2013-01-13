@@ -1,0 +1,19 @@
+{
+    "name":"flickr-backup",
+    "version":"0.0.1",
+    "author":"Seb Flippence <seb@flippence.co.uk>",
+    "description":"Recursively backs up photos to Flickr (with history/state to prevent the same photos from being uploaded again)",
+    "main":"./flickr-backup",
+    "engines":{
+        "node":">=0.8.17"
+    },
+    "keywords":[ "flickr", "backup", "recursive", "history" ],
+    "licenses":[
+        {
+            "type":"MIT"
+        }
+    ],
+    "dependencies": {
+        "dirreader": "0.0.1"
+    }
+}
