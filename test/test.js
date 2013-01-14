@@ -16,5 +16,11 @@
     console.assert(folderStructure[0].tags[0] === 'foo', 'File tag should contain sample tags');
     console.assert(folderStructure[0].tags[1] === 'bar', 'File tag should contain sample tags');
 
-    console.info('Pass');
+    // Running a system command
+    var systemCommandCallback = function(error, stdout, stderr) {
+        console.assert(stdout.indexOf('Hello World') !== -1, 'System should have responded with the correct message');
+    };
+    var systemCommand = FlickrBackup.exec('echo "Hello World"', systemCommandCallback);
+
+
 })();
