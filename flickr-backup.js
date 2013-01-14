@@ -54,7 +54,7 @@
                 })();
 
                 files[i] = {
-                    'path' : relativePath
+                    'path':relativePath
                 };
                 i++;
             }
@@ -111,12 +111,23 @@
     }
 
     /**
+     * Executes a system command and runs the callback once complete
+     *
+     * @param cmd
+     * @param callback - method to be call with the arguments: error, stdout, stderr
+     */
+    function exec(cmd, callback) {
+        require('child_process').exec(cmd, callback);
+    }
+
+    /**
      * Public methods
      *
      * @type {Object}
      */
     module.exports = {
         'loadConfig':loadConfig,
-        'getAssetList':getAssetList
+        'getAssetList':getAssetList,
+        'exec':exec
     };
 })();
