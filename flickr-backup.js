@@ -121,6 +121,61 @@
     }
 
     /**
+     * Holds the history
+     *
+     * @type {null} || {object}
+     * @private
+     */
+    var _history = null;
+
+    /**
+     * Loads the history in our private _history
+     *
+     * @private
+     */
+    function _loadHistory() {
+        var fs = require('fs'),
+            historyFile = './history';
+        _history = (fs.existsSync(historyFile)) ? require(historyFile) : {};
+    }
+
+    /**
+     * Will attempt to save a file, throws an error if it's unable to save
+     *
+     * @param path
+     * @param content
+     * @private
+     */
+    function _saveFile(filename, data) {
+        var fs = require('fs');
+        fs.writeFileSync(filename, data);
+    }
+
+    /**
+     * Will append a history file with the given key and value
+     *
+     * @param key
+     * @param value
+     */
+    function appendHistory(key, value) {
+        if (_history === null) {
+            _loadHistory();
+        }
+
+        _history[key] = value;
+
+        _saveFile('./history.json', JSON.stringify(_history));
+    }
+
+    function inHistory(key) {
+        if (_history === null) {
+            _loadHistory();
+        }
+
+        return _history.hasOwnProperty(key);
+    }
+
+    /**
      * Public methods
      *
      * @type {Object}
@@ -128,6 +183,8 @@
     module.exports = {
         'loadConfig':loadConfig,
         'getAssetList':getAssetList,
-        'exec':exec
+        'exec':exec,
+        'appendHistory':appendHistory,
+        'inHistory':inHistory
     };
 })();

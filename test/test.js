@@ -22,5 +22,12 @@
     };
     var systemCommand = FlickrBackup.exec('echo "Hello World"', systemCommandCallback);
 
-
+    // Save and load history state
+    FlickrBackup.appendHistory('filepath-foo1', 'id-bar1');
+    FlickrBackup.appendHistory('filepath-foo2', 'id-bar2');
+    console.assert(FlickrBackup.inHistory('filepath-foo1') === true, 'Should have saved a key, value in history file');
+    console.assert(FlickrBackup.inHistory('filepath-foo2') === true, 'Should have saved a key, value in history file');
+    // Remove test history file
+    var fs = require('fs');
+    fs.unlinkSync('./history.json');
 })();
