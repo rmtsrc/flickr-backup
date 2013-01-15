@@ -79,7 +79,7 @@
         var fileParts = filePath.split('/'),
             tags = [],
             i = 1;
-        for (part in fileParts) {
+        for (var part in fileParts) {
             var filePart = fileParts[part];
             if (filePart !== '' && fileParts.length !== i) {
                 tags.push(filePart);
@@ -123,7 +123,7 @@
     /**
      * Holds the history
      *
-     * @type {null} || {object}
+     * @type {null} || {Object}
      * @private
      */
     var _history = null;
@@ -140,10 +140,10 @@
     }
 
     /**
-     * Will attempt to save a file, throws an error if it's unable to save
+     * Will attempt to save a file
      *
-     * @param path
-     * @param content
+     * @param filename
+     * @param data
      * @private
      */
     function _saveFile(filename, data) {
