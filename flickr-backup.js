@@ -1,6 +1,20 @@
+/**
+ * @name flickr-backup
+ * @version 0.0.1
+ * @version Seb Flippence <seb@flippence.co.uk>
+ * @description Recursively backs up photos to Flickr (with history/state to prevent the same photos from being uploaded again)
+ */
 (function () {
+    /**
+     * flickr-backup config
+     *
+     * @type {Object}
+     * @private
+     */
     var _config = {
-        'supportedFiletypes':'^.*\.(jpg|JPG|jpeg|JPEG|png|PNG)$'
+        // Regex of supported file types
+        'supportedFiletypes':'^.*\.(jpg|JPG|jpeg|JPEG|png|PNG)$',
+        'historyFile':'./history'
     };
 
     /**
@@ -134,9 +148,8 @@
      * @private
      */
     function _loadHistory() {
-        var fs = require('fs'),
-            historyFile = './history';
-        _history = (fs.existsSync(historyFile)) ? require(historyFile) : {};
+        var fs = require('fs');
+        _history = (fs.existsSync(_config.historyFile)) ? require(_config.historyFile) : {};
     }
 
     /**
@@ -167,6 +180,12 @@
         _saveFile('./history.json', JSON.stringify(_history));
     }
 
+    /**
+     * Checks if a given key is stored in the current history
+     *
+     * @param key
+     * @return {Boolean}
+     */
     function inHistory(key) {
         if (_history === null) {
             _loadHistory();
