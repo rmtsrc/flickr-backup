@@ -1,5 +1,5 @@
 (function(){
-    var FlickrBackup = require('../flickr-backup');
+    var FlickrBackup = require('../flickr-backup.lib');
 
     // Config testing
     var config = FlickrBackup.loadConfig('./config');
@@ -30,4 +30,10 @@
     // Remove test history file
     var fs = require('fs');
     fs.unlinkSync('./history.json');
+
+    // Get ID from flickr_upload command
+    var exampleStdout = "Uploading baz.jpg...\n" +
+                        "Waiting for upload results (ctrl-C if you don't care)...\n" +
+                        "baz.jpg is at http://www.flickr.com/tools/uploader_edit.gne?ids=8387118033";
+    console.assert(FlickrBackup.getIdFromFlickrUploadResponse(exampleStdout) === '8387118033', 'Should have got the correct ID from the exampleStdout');
 })();
