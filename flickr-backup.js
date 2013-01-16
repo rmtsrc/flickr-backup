@@ -195,6 +195,17 @@
     }
 
     /**
+     * Works out what the ID of the uploaded asset is from the flickr_upload commands stdout
+     *
+     * @param stdout
+     * @return {String}
+     */
+    function getIdFromFlickrUploadResponse(stdout) {
+        var stdoutParts = stdout.split('http://www.flickr.com/tools/uploader_edit.gne?ids=');
+        return (typeof stdoutParts[1] !== 'undefined') ? stdoutParts[1] : null;
+    }
+
+    /**
      * Public methods
      *
      * @type {Object}
@@ -204,6 +215,7 @@
         'getAssetList':getAssetList,
         'exec':exec,
         'appendHistory':appendHistory,
-        'inHistory':inHistory
+        'inHistory':inHistory,
+        'getIdFromFlickrUploadResponse':getIdFromFlickrUploadResponse
     };
 })();
