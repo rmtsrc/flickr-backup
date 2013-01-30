@@ -24,9 +24,24 @@
 
     // Save and load history state
     FlickrBackup.appendHistory('filepath-foo1', 'id-bar1');
-    FlickrBackup.appendHistory('filepath-foo2', 'id-bar2');
+    FlickrBackup.appendHistory('filepath-foo2', "id-bar2\n");
     console.assert(FlickrBackup.inHistory('filepath-foo1') === true, 'Should have saved a key, value in history file');
     console.assert(FlickrBackup.inHistory('filepath-foo2') === true, 'Should have saved a key, value in history file');
+    var assetList = [
+        'foo',
+        'bar',
+        'test/fixtures/sample_folder/foo/bar/baz.jpg',
+        'test/fixtures/sample_folder/foo/bar/bob.jpg'
+    ];
+    var previous = '';
+    for (var i in assetList) {
+        var asset = assetList[i];
+        FlickrBackup.appendHistory(asset, 'foo' + i);
+        if (previous !== '') {
+            console.assert(FlickrBackup.inHistory(previous) === true, 'Should have saved a key, value in history file');
+        }
+        previous = asset;
+    }
     // Remove test history file
     var fs = require('fs');
     fs.unlinkSync('./history.json');

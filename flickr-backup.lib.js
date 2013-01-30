@@ -96,7 +96,7 @@
         for (var part in fileParts) {
             var filePart = fileParts[part];
             if (filePart !== '' && fileParts.length !== i) {
-                tags.push(filePart);
+                tags.push(filePart.replace(/ /g, '_').replace(/"/g, ''));
             }
 
             i++;
@@ -118,6 +118,8 @@
             i = 0;
         for (file in fileList) {
             fileList[i]['tags'] = _convertPathToTags(path, fileList[file].path);
+            // Escape special chars 
+            fileList[i]['path'] = fileList[i]['path'].replace(/(["\s'&$`\\\(\)])/g,'\\$1');
             i++;
         }
 
@@ -149,7 +151,7 @@
      */
     function _loadHistory() {
         var fs = require('fs');
-        _history = (fs.existsSync(_config.historyFile)) ? require(_config.historyFile) : {};
+        _history = (fs.existsSync(_config.historyFile + '.json')) ? require(_config.historyFile) : {};
     }
 
     /**
@@ -171,13 +173,18 @@
      * @param value
      */
     function appendHistory(key, value) {
+        if (typeof value !== 'string' || value === '') {
+            // Cannot save without a value
+            return;
+        }
+
         if (_history === null) {
             _loadHistory();
         }
 
-        _history[key] = value;
+        _history[key] = value.replace("\n", "");
 
-        _saveFile('./history.json', JSON.stringify(_history));
+        _saveFile(_config.historyFile + '.json', JSON.stringify(_history));
     }
 
     /**
