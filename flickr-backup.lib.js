@@ -119,7 +119,7 @@
         for (file in fileList) {
             fileList[i]['tags'] = _convertPathToTags(path, fileList[file].path);
             // Escape special chars 
-            fileList[i]['path'] = fileList[i]['path'].replace(/(["\s'&$`\\\(\)])/g,'\\$1');
+            fileList[i]['path'] = fileList[i]['path'].replace(/(["\s'&$`\\\(\)])/g, '\\$1');
             i++;
         }
 
@@ -127,13 +127,14 @@
     }
 
     /**
-     * Executes a system command and runs the callback once complete
+     * Executes a system command (synchronous)
      *
      * @param cmd
-     * @param callback - method to be call with the arguments: error, stdout, stderr
      */
-    function exec(cmd, callback) {
-        require('child_process').exec(cmd, callback);
+    function execSync(cmd) {
+        var execSync = require('exec-sync');   
+        var result = execSync(cmd, true);
+        return result;
     }
 
     /**
@@ -220,7 +221,7 @@
     module.exports = {
         'loadConfig':loadConfig,
         'getAssetList':getAssetList,
-        'exec':exec,
+        'execSync':execSync,
         'appendHistory':appendHistory,
         'inHistory':inHistory,
         'getIdFromFlickrUploadResponse':getIdFromFlickrUploadResponse
