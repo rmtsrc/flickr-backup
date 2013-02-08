@@ -1,8 +1,8 @@
 (function(){
-    var FlickrBackup = require('../flickr-backup.lib');
+    var FlickrBackup = require('../lib/flickr-backup.lib');
 
     // Config testing
-    var config = FlickrBackup.loadConfig('./config');
+    var config = FlickrBackup.loadConfig('../test/fixtures/config');
 
     var option1 = config.get('add_folders_as_tags');
     console.assert(option1 === true, 'Config should be able to get add_folders_as_tags config value');
@@ -17,10 +17,8 @@
     console.assert(folderStructure[0].tags[1] === 'bar', 'File tag should contain sample tags');
 
     // Running a system command
-    var systemCommandCallback = function(error, stdout, stderr) {
-        console.assert(stdout.indexOf('Hello World') !== -1, 'System should have responded with the correct message');
-    };
-    var systemCommand = FlickrBackup.exec('echo "Hello World"', systemCommandCallback);
+    var systemCommand = FlickrBackup.execSync('echo "Hello World"');
+    console.assert(systemCommand.stdout.indexOf('Hello World') !== -1, 'System should have responded with the correct message');
 
     // Save and load history state
     FlickrBackup.appendHistory('filepath-foo1', 'id-bar1');
