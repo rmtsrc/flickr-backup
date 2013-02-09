@@ -27,7 +27,9 @@ npm install flickr-backup
 
 ### From the command line
 
+```
 node flickr-backup.cli.js ./relativeFolderToUpload
+```
 
 ### From Node.js
 
