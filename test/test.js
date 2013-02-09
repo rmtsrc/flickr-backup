@@ -1,7 +1,7 @@
 /**
  * @name flickr-backup.lib.test
- * @version 0.0.1
- * @version Seb Flippence <seb@flippence.co.uk>
+ * @version 0.0.2
+ * @version Seb Flippence
  * @description Recursively backs up photos to Flickr (with history/state to prevent the same photos from being uploaded again)
  */
 (function(){
