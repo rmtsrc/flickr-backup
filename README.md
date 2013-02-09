@@ -5,11 +5,20 @@ Recursively backs up photos to Flickr (with history/state to prevent the same ph
 
 ## Install
 
-1. From your package manager install Node.js, npm and Flickr::Upload <http://www.flickr.com/services/apps/4795/> e.g. via MacPorts: "port install nodejs npm p5.12-flickr-upload"
-2. Generate a Flickr::Upload auth_token e.g. "flickr_upload --auth"
+1. From your package manager install Node.js, npm and Flickr::Upload <http://www.flickr.com/services/apps/4795/> e.g. via MacPorts:
+```
+port install nodejs npm p5.12-flickr-upload
+```
+2. Generate a Flickr::Upload auth_token e.g.
+```
+flickr_upload --auth
+```
 3. Create a flickr_upload configuration file "~/.flickrrc" with the generated auth_token and optionally set default viewing permissions
-4. Check that flickr_upload can upload images e.g. "flickr_upload testImage.jpg"
-4. Install flickr-backup:
+4. Check that flickr_upload can upload images e.g.
+```
+flickr_upload testImage.jpg
+```
+5. Install flickr-backup:
 ```
 npm install flickr-backup
 ```
