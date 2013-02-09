@@ -1,14 +1,11 @@
+/**
+ * @name flickr-backup.lib.test
+ * @version 0.0.1
+ * @version Seb Flippence <seb@flippence.co.uk>
+ * @description Recursively backs up photos to Flickr (with history/state to prevent the same photos from being uploaded again)
+ */
 (function(){
     var FlickrBackup = require('../lib/flickr-backup.lib');
-
-    // Config testing
-    var config = FlickrBackup.loadConfig('../test/fixtures/config');
-
-    var option1 = config.get('add_folders_as_tags');
-    console.assert(option1 === true, 'Config should be able to get add_folders_as_tags config value');
-
-    var option2 = config.get('default_upload_privacy');
-    console.assert(option2.is_public === 0, 'Config should be able to get default_upload_privacy.is_public config value');
 
     // Folder scanning tests
     var folderStructure = FlickrBackup.getAssetList('./fixtures/sample_folder');
