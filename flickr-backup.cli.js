@@ -1,3 +1,9 @@
+/**
+ * @name flickr-backup.cli
+ * @version 0.0.1
+ * @version Seb Flippence <seb@flippence.co.uk>
+ * @description Recursively backs up photos to Flickr (with history/state to prevent the same photos from being uploaded again)
+ */
 (function () {
 	var flickrBackup = require('./lib/flickr-backup');
 
