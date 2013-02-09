@@ -47,7 +47,7 @@ FlickrBackup.uploadFolder('./relativeFolderToUpload');
 
 (The MIT License)
 
-Copyright (c) 2012 rmt/src <seb@flippence.co.uk>;
+Copyright (c) 2012 rmt/src;
 
 Permission is hereby granted, free of charge, to any person obtaining
 a copy of this software and associated documentation files (the
