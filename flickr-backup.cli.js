@@ -1,7 +1,7 @@
 /**
  * @name flickr-backup.cli
  * @version 0.0.2
- * @version Seb Flippence
+ * @author Seb Flippence
  * @description Recursively backs up photos to Flickr (with history/state to prevent the same photos from being uploaded again)
  */
 (function () {
