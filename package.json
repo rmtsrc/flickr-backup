@@ -16,6 +16,6 @@
     "dependencies":{
         "dirreader":"0.0.1",
         "exec-sync":"0.1.5",
-        "moment":"2.0.0"
+        "moment":"2.24.0"
     }
 }
